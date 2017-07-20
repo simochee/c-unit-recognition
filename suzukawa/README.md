@@ -1,11 +1,12 @@
-# 文字列をランダムな並びのアルファベットと置き換えて暗号化するプログラム
+# ２つの文字列を連結するプログラム
 
 ## もくじ
 
 <!-- TOC -->
 
-- [文字列をランダムな並びのアルファベットと置き換えて暗号化するプログラム](#文字列をランダムな並びのアルファベットと置き換えて暗号化するプログラム)
+- [２つの文字列を連結するプログラム](#２つの文字列を連結するプログラム)
     - [もくじ](#もくじ)
+    - [プログラムに用いた要素](#プログラムに用いた要素)
     - [実行結果](#実行結果)
     - [コメント付きプログラム](#コメント付きプログラム)
         - [解説](#解説)
@@ -13,76 +14,118 @@
 
 <!-- /TOC -->
 
+## プログラムに用いた要素
+
+* 繰り返し
+* 文字列
+* 関数
+
 ## 実行結果
 
 ```
-暗号化する文字列：programming
-pmysmwiikhs
+文字列１を入力してください：hello
+文字列２を入力してください：world
+結果：helloworld
 ```
 
-> ※ `scanf`の仕様により入力にスペースは使用できない（スペース以降が無視される）
+> ※ `scanf`の仕様により入力にスペースは使用できない（一応うまくいくけど結果がおかしくなる）
 
 ```
-暗号化する文字列：hello world
-bgddy
+文字列１を入力してください：hello world
+文字列２を入力してください：結果：helloworld
 ```
 
 ## コメント付きプログラム
 
 ```c
-/**
- * 文字列をランダムな並びのアルファベットと置き換えて暗号化する
- */
 #include <stdio.h>
-#include <string.h>
 
-/* 暗号化する関数 */
-void encrypt(char *text, char *list) {
-    int i;
+/**
+ * 文字列の長さを取得する関数
+ */
+int getLength(char *text)
+{
+    int i = 0;
 
-    // strlen : 文字列の長さを求める関数
-    for(i = 0; i < strlen(text); i++) {
+    // 無限ループ
+    while(1)
+    {
+        // ヌル文字までいくとループから抜ける
+        if(text[i] == '\0')
+        {
+            break;
+        }
 
-        // 置き換えた文字を表示
-        printf("%c", list[text[i] - 97]);
+        i++;
+    }
 
-    }        
-
-    printf("\n");
+    // iの値を返却する
+    return i;
 }
 
-int main(void) {
-    /* 変数の宣言 */
-    // 平文の文字列
-    char text[200];
-    // a-zまでの置き換え対照表
-    char list[60] = "wunqgzsbkvodihypjmxtrcflae";
+/**
+ * 文字列どうしを連結する関数
+ * 引数 ( 前半の文字列 , 後半の文字列 , 連結された文字列を格納する文字列 )
+ */
+void linkString(char *str1, char *str2, char *str)
+{
+    int i, length1, length2;
 
-    /* 平文の入力 */
-    printf("暗号化する文字列：");
-    scanf("%s", text);
+    // 前半の文字列の長さを取得
+    length1 = getLength(str1);
 
-    /* 暗号化して表示する */
-    encrypt(text, list);
+    for(i = 0; i < length1; i++)
+    {
+        // 文字を入れて行く
+        str[i] = str1[i];
+    }
 
-    return (0);
+    // 後半の文字列の長さを取得
+    length2 = getLength(str2);
+
+    for(i = 0; i < length2; i++)
+    {
+        // 前半の文字列の長さ + iの場所に文字を入れていく
+        str[i + length1] = str2[i];
+    }
+
+    // strの末尾にヌル文字を挿入
+    str[length1 + length2] = '\0';
+}
+
+int main(void)
+{
+    // 入力される文字列を格納する
+    char input1[100], input2[100];
+    // 連結された文字列を格納する
+    char str[200];
+
+    // 前半の文字列を入力
+    printf("文字列１を入力してください：");
+    scanf("%s", input1);
+
+    // 後半の文字列を入力
+    printf("文字列２を入力してください：");
+    scanf("%s", input2);
+
+    // 文字を結合
+    linkString(input1, input2, str);
+
+    // 結果を出力
+    printf("結果：%s\n", str);
+
+    return 0;
 }
 ```
 
 ### 解説
 
-* `#include <string.h>`は文字列を扱うのに便利な関数を利用するために読み込んだ（今回は`strlen`を使った）
+* `while(1)`はカッコの中が常に`1`なので（当たり前）無限にループする
 
-* `input[200]`には最大`199文字`まで格納できる（末尾にヌル文字（`\0`）が入るから）
-
-* `strlen`関数は文字列の長さを取得する
-
-* [アスキーコード一覧](http://www9.plala.or.jp/sgwr-t/c_sub/ascii.html)
-
-* `%s`は**文字列**を、`%c`は**文字**を入出力する記号
+* `getLength`について、文字列の最後には必ずヌル文字`\0`があるから、そこまでの文字数をカウントすれば文字の長さがわかる
 
 ## 提出用ソースコード
 
 [ハイライトされたプログラム](./program.c)
 
-[プログラムのみ](https://raw.githubusercontent.com/simochee/c-unit-recognition/master/natsumi/program.c)
+[プログラムのみ](https://raw.githubusercontent.com/simochee/c-unit-recognition/master/suzukawa/program.c)

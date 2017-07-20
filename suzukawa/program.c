@@ -1,16 +1,11 @@
 #include <stdio.h>
 
-/**
- * 文字列の長さを取得する関数
- */
 int getLength(char *text)
 {
     int i = 0;
 
-    // 無限ループ
     while(1)
     {
-        // ヌル文字までいくとループから抜ける
         if(text[i] == '\0')
         {
             break;
@@ -19,14 +14,9 @@ int getLength(char *text)
         i++;
     }
 
-    // iの値を返却する
     return i;
 }
 
-/**
- * 文字列どうしを連結する関数
- * 引数 ( 前半の文字列 , 後半の文字列 , 連結された文字列を格納する文字列 )
- */
 void linkString(char *str1, char *str2, char *str)
 {
     int i, length1, length2;
@@ -45,15 +35,12 @@ void linkString(char *str1, char *str2, char *str)
         str[i + length1] = str2[i];
     }
 
-    // strの末尾にヌル文字を挿入
-    str[length1 + length2] = '\n';
+    str[length1 + length2] = '\0';
 }
 
 int main(void)
 {
-    // 入力される文字列を格納する
     char input1[100], input2[100];
-    // 連結された文字列を格納する
     char str[200];
 
     printf("文字列１を入力してください：");
