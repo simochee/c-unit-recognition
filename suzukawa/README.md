@@ -124,6 +124,31 @@ int main(void)
 
 * `getLength`について、文字列の最後には必ずヌル文字`\0`があるから、そこまでの文字数をカウントすれば文字の長さがわかる
 
+* 【余談】`getLength`は`strlen( String )`関数で代用できる
+
+```c
+#include <string.h>
+
+strlen("hello"); // => 5
+// == getLength("hello")
+```
+
+* 【余談】`linkString`は以下のプログラムで代用できる
+
+```c
+#include <string.h>
+
+char str[100];
+char str1[50] = "hello";
+char str2[50] = "world";
+
+strcpy(str, str1); // strにstr1の内容をコピーする
+strcat(str, str2); // strの後ろにstr2の内容を繋げる 
+// == linkString(str1, str2, str)
+```
+
+* 【余談】上の２つは`string.h`というヘッダを読み込む必要がある（`#include <string.h>`）
+
 ## 提出用ソースコード
 
 [ハイライトされたプログラム](./program.c)
