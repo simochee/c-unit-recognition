@@ -134,8 +134,6 @@ int main(void)
 
 ## 提出用ソースコード
 
-[コメントなしのプログラム（ハイライト）](./program.c)
+[ハイライトされたプログラム](./program.c)
 
 [プログラムのみ](https://raw.githubusercontent.com/simochee/c-unit-recognition/master/alice/program.c)
-
-「プログラムのみ」の方は直接保存できる
