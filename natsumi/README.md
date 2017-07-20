@@ -77,7 +77,7 @@ int main(void) {
 
 * `strlen`関数は文字列の長さを取得する
 
-* (アスキーコード一覧)[http://www9.plala.or.jp/sgwr-t/c_sub/ascii.html]
+* [アスキーコード一覧](http://www9.plala.or.jp/sgwr-t/c_sub/ascii.html)
 
 * `%s`は**文字列**を、`%c`は**文字**を入出力する記号
 
