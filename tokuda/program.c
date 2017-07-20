@@ -1,6 +1,3 @@
-/**
- * 平均点と最高点を求めるプログラム
- */
 #include <stdio.h>
 
 void inputScores(int *scores)
@@ -23,7 +20,7 @@ double average(int *scores)
         sum = sum + scores[i];
     }
 
-    return (double)sum / i;
+    return (double)sum / 10;
 }
 
 int maximum(int *scores)
