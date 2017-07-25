@@ -11,6 +11,7 @@ int getLength(char *text)
             break;
         }
 
+
         i++;
     }
 

@@ -64,19 +64,19 @@
 #include <stdio.h>
 
 // 消費税を加える関数
-// tax( 元値の配列 , 消費税を加えた値段を格納する配列 , 消費税率 )
-void tax(int *original, int *price, double rate) {
+// tax( 元値の配列 , 消費税を加えた値段を格納する配列 )
+void tax(int *original, int *price) {
     int i = 0;
 
     while(1) {
-        // 元値が0の要素があればループを抜ける
-        if(original[i] == 0) {
+        // 元値が-1の要素があればループを抜ける
+        if(original[i] == -1) {
             break;
         }
         // 元値が0より大きければ消費税を計算
         if(original[i] > 0) {
             // 消費税を加える
-            price[i] = (int)(original[i] * (1.0 + rate));
+            price[i] = original[i] * 1.08;
         }
 
         i++;
@@ -102,10 +102,10 @@ int main(void) {
     }
 
     // 末尾を示すために0を代入
-    original[number] = 0;
+    original[number] = -1;
 
     // 消費税を計算
-    tax(original, price, 0.08);
+    tax(original, price);
 
     // 仕切り線
     printf("---------------------------\n");
@@ -127,10 +127,10 @@ int main(void) {
 
 * `break`はループから抜ける、`continue`はループをスキップする
 
-* `(int)(original[i] * (1.0 + rate))`は、型変換が何回か行われている
+<!-- * `(int)(original[i] * (1.0 + rate))`は、型変換が何回か行われている
     1. `(1.0 + rate)`は`double + double`なので`double`型になる
     2. `(original[i] * (1.0 + rate))`は`int double`なので`double`型になる
-    3. 格納するのは`int`型の配列だから、最後に`(int)( ... )`として`int`型にする（この時小数点以下は切り捨てられる）
+    3. 格納するのは`int`型の配列だから、最後に`(int)( ... )`として`int`型にする（この時小数点以下は切り捨てられる） -->
 
 ## 提出用ソースコード
 

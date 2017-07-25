@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-void tax(int *original, int *price, double rate) {
+void tax(int *original, int *price) {
     int i = 0;
 
     while(1) {
-        if(original[i] == 0) {
+        if(original[i] == -1) {
             break;
         }
         if(original[i] > 0) {
-            price[i] = (int)(original[i] * (1.0 + rate));
+            price[i] = original[i] * 1.08;
         }
 
         i++;
@@ -29,9 +29,9 @@ int main(void) {
         scanf("%d", &original[i]);
     }
 
-    original[number] = 0;
+    original[number] = -1;
 
-    tax(original, price, 0.08);
+    tax(original, price);
 
     printf("---------------------------\n");
 
